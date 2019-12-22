@@ -23,3 +23,15 @@ Route::put('/desarrolladores/{id}', 'PagesController@updateDesarrollador')->name
 Route::delete('desarrolladores/{id}', 'PagesController@eliminarDesarrollador')->name('desarrolladores.eliminar');
 
 Route::get('usuarios', 'PagesController@usuarios')->name('usuarios');
+Route::get('usuarios/{id}', 'PagesController@usuarioDetalles')->name('usuarios.detalleUsuario');
+Route::put('/usuarios/{id}', 'PagesController@updateUsuario')->name('usuarios.actualizar');
+Route::delete('usuarios/{id}', 'PagesController@eliminarUsuario')->name('usuarios.eliminar');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

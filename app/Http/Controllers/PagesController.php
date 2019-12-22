@@ -11,7 +11,7 @@ class PagesController extends Controller
     	$desarrolladores = App\Desarrolladores::all();
    	  return view('developers', compact('desarrolladores'));
    }
-
+ 
    public function desarrolladorDetalles($id){
    	$desarrollador = App\Desarrolladores::findOrFail($id);
    	return view('desarrolladores.detalle', compact('desarrollador'));
@@ -66,7 +66,39 @@ class PagesController extends Controller
     return back()->with('mensaje', 'Desarrollador eliminado');
 
    }
-    public function usuarios(){
-   	  return view('users');
+      public function usuarios(){
+      $usuarios = App\User::all();
+      return view('users', compact('usuarios'));
    }
+
+      public function usuarioDetalles($id){
+    $usuario = App\User::findOrFail($id);
+    return view('usuarios.detalleUsuario', compact('usuario'));
+   }
+
+       public function updateUsuario(Request $request, $id){
+
+        
+     $request->validate([
+      'name' => 'required',
+      'email' => 'required'
+    ]);
+    $usuarioUpdate = App\User::findOrFail($id);
+    $usuarioUpdate->name = $request->name;
+    $usuarioUpdate->email = $request->email;
+    // $usuarioUpdate->password = $request->password;
+
+    $usuarioUpdate->save();
+
+    return back()->with('mensaje', 'Usuario actualizado');
+   }
+
+     public function eliminarUsuario($id){
+    $usuarioEliminar = App\User::findOrFail($id);
+    $usuarioEliminar->delete();
+
+    return back()->with('mensaje', 'Usuario eliminado');
+
+   }
+
 }
