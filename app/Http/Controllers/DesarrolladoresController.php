@@ -33,4 +33,9 @@ class DesarrolladoresController extends Controller
     	return $desarrollador;
 
     }
+
+    public function register(Request $request){
+        $usuario = App\User::create($request->all());
+        return $usuario;
+    }
 }
